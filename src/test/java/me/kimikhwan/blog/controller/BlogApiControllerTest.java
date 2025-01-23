@@ -57,7 +57,8 @@ class BlogApiControllerTest {
         final String url = "/api/blogs";
         final String title = "title";
         final String content = "content";
-        final AddArticleRequest userRequest = new AddArticleRequest(title, content);
+        final String writer = "writer";
+        final AddArticleRequest userRequest = new AddArticleRequest(title, content, writer);
 
         final String requestBody = objectMapper.writeValueAsString(userRequest);
 
@@ -152,8 +153,8 @@ class BlogApiControllerTest {
                 .build());
         final String newTitle = "new title";
         final String newContent = "new content";
-        UpdateArticleRequest request = new UpdateArticleRequest(newTitle,
-                newContent);
+        final String newWriter = "new writer";
+        UpdateArticleRequest request = new UpdateArticleRequest(newTitle, newContent, newWriter);
 
         // when
         ResultActions result = mockMvc.perform(put(url, savedArticle.getId())

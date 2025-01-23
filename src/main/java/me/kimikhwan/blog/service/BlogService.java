@@ -1,8 +1,10 @@
 package me.kimikhwan.blog.service;
 
+import jakarta.persistence.ManyToOne;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import me.kimikhwan.blog.domain.Blog;
+import me.kimikhwan.blog.domain.User;
 import me.kimikhwan.blog.dto.AddArticleRequest;
 import me.kimikhwan.blog.dto.UpdateArticleRequest;
 import me.kimikhwan.blog.repository.BlogRepository;
@@ -15,6 +17,7 @@ import java.util.List;
 public class BlogService {
 
     private final BlogRepository blogRepository;
+
 
     // 블로그 글 추가
     public Blog save(AddArticleRequest request){
@@ -44,5 +47,6 @@ public class BlogService {
 
         return blog;
     }
+
 
 }

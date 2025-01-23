@@ -33,7 +33,7 @@ public class BlogViewController {
 
     model.addAttribute("blog", blog); // 블로그 글 리스트 저장
 
-    return "blog-List"; // blog-List.html 라는 html 뷰 조회
+    return "blog-list"; // blog-list.html 라는 html 뷰 조회
 
     }
 

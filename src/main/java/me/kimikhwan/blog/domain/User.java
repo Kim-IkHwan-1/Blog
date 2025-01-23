@@ -26,12 +26,17 @@ public class User implements UserDetails {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
+    @Column(name = "phone_number")
+    private String phone_number;
+
     @Column(name = "password")
     private String password;
 
+
     @Builder
-    public User(String name, String password, String auth){
+    public User(String name, String password, String phone_number){
         this.name = name;
+        this.phone_number = phone_number;
         this.password = password;
     }
 

@@ -29,6 +29,7 @@ if (modifyButton) {
             },
             body: JSON.stringify({
                 title: document.getElementById('title').value,
+                writer: document.getElementById('writer').value,
                 content: document.getElementById('content').value
             })
         })
@@ -51,6 +52,7 @@ if (createButton) {
             },
             body: JSON.stringify({
                 title: document.getElementById('title').value,
+                writer: document.getElementById('writer').value,
                 content: document.getElementById('content').value
             })
         })

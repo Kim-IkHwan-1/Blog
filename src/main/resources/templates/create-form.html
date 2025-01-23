@@ -18,10 +18,11 @@
         <input type="hidden" id="blog-id" th:value="${blog.id}">
         <header class="mb-4">
           <input type="text" class="form-control" placeholder="제목" id="title" th:value="${blog.title}">
+          <textarea class="form-control" placeholder="작성자" id="writer" th:text="${blog.writer}"></textarea>
         </header>
         <section class="mb-5">
           <textarea class="form-control h-25" rows="10" placeholder="내용" id="content" th:text="${blog.content}"></textarea>
-        </section>
+                  </section>
         <button th:if="${blog.id} != null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>
         <button th:if="${blog.id} == null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>
       </article>

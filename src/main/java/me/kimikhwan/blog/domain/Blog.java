@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import me.kimikhwan.blog.domain.User;
 import java.time.LocalDateTime;
 
 @EntityListeners(AuditingEntityListener.class)
@@ -21,21 +21,24 @@ public class Blog {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "title", nullable = false) // 'title' not null 컬럼과 매칭
+    @Column(name = "title", nullable = false)
     private String title;
+
+    @Column(name = "writer", updatable = false)
+    private String writer;
 
     @Column(name = "content", nullable = false)
     private String content;
 
-    private String writer;
-
     @CreatedDate // 엔티티 생성 시간 저장
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate // 엔티티 수정 시간 저장
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+
 
     @Builder // 빌더 패턴으로 객체 생성
     public Blog(String title, String content, String writer) {
