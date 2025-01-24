@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.kimikhwan.blog.domain.Blog;
 import me.kimikhwan.blog.dto.AddArticleRequest;
 import me.kimikhwan.blog.dto.ArticleResponse;
+import me.kimikhwan.blog.dto.BlogListViewResponse;
 import me.kimikhwan.blog.dto.UpdateArticleRequest;
 import me.kimikhwan.blog.service.BlogService;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,18 @@ public class BlogApiController {
                 .body(blog);
     }
 
+    @GetMapping(value = "/api/blogs", params = {"title", "writer"})
+    public ResponseEntity<List<BlogListViewResponse>> findBlogsByTitleAndWriter(
+            @RequestParam(required = false) String title,
+            @RequestParam(required = false) String writer) {
+
+        // BlogService의 필터링 메서드를 호출하여 결과 반환
+        List<BlogListViewResponse> blogs = blogService.findAllFiltered(title, writer);
+
+        return ResponseEntity.ok()
+                .body(blogs); // 필터링된 결과 반환
+    }
+
     // 블로그 글 조회
     @GetMapping("/api/blogs/{id}")
     //URL 경로에서 값 추출
@@ -69,6 +82,11 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
                 .body(updateArticle);
+    }
+
+    @PostMapping("/blogs/update-form")
+    public String updateErrorRedirect() {
+        return "redirect:/error/error-404.html";
     }
 
 

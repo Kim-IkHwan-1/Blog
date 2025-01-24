@@ -34,7 +34,6 @@ public class BlogViewController {
     model.addAttribute("blog", blog); // 블로그 글 리스트 저장
 
     return "blog-list"; // blog-list.html 라는 html 뷰 조회
-
     }
 
     @GetMapping("/blogs/{id}")
@@ -42,7 +41,7 @@ public class BlogViewController {
         Blog blog = blogService.findById(id);
         model.addAttribute("blog", new ArticleViewResponse(blog));
 
-        return "blog";
+        return "blog-detail";
     }
 
     @GetMapping("/blogs/create-form")
@@ -55,6 +54,14 @@ public class BlogViewController {
         }
 
         return "create-form";
+    }
+
+    @PostMapping("/blogs/create-form")
+    public String createBlog(@RequestParam String title,
+                             @RequestParam String content,
+                             @RequestParam String writer) {
+        blogService.saveForm(title, content, writer);
+        return "redirect:/blogs";
     }
 
 

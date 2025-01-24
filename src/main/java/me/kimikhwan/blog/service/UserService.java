@@ -14,9 +14,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Long save(AddUserRequest dto){
+    public Long save(AddUserRequest dto) {
         return userRepository.save(User.builder()
                 .name(dto.getName())
+                .phoneNumber(dto.getPhoneNumber())
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
                 .build()).getId();
     }

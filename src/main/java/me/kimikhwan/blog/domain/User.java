@@ -26,17 +26,17 @@ public class User implements UserDetails {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @Column(name = "phone_number")
-    private String phone_number;
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
 
     @Column(name = "password")
     private String password;
 
 
     @Builder
-    public User(String name, String password, String phone_number){
+    public User(String name, String password, String phoneNumber){
         this.name = name;
-        this.phone_number = phone_number;
+        this.phoneNumber = phoneNumber;
         this.password = password;
     }
 
@@ -48,6 +48,14 @@ public class User implements UserDetails {
     @Override // 사용자 id(이름)반환
     public String getUsername(){
         return name;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override // 사용자 비밀번호 반환
@@ -70,7 +78,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    @Override // 계정 사용 가능 여부 반호나
+    @Override // 계정 사용 가능 여부 반환
     public boolean isEnabled(){
         return true;
     }
